@@ -15,11 +15,9 @@ public class UserRegisteredConsumer {
 
     private final UserProfileRepository userProfileRepository;
 
-    @KafkaListener(topics = "user-registered", groupId = "user-service-group", containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = "user.registered.v9", groupId = "user-service-group")
     public void handleUserRegistered(UserRegisteredEvent event) {
         log.info("Received UserRegisteredEvent: {}", event);
-
-        // Create user profile on registration
         UserProfile profile = UserProfile.builder()
                 .id(event.getId())
                 .username(event.getUsername())

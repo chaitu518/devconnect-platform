@@ -28,7 +28,7 @@ public class AuthService {
                 .username(savedUser.getUsername())
                 .email(savedUser.getEmail())
                 .build();
-        kafkaTemplate.send("user.registration", event);
+        kafkaTemplate.send("user.registered.v9", event);
         return jwtUtil.generateToken(email);
     }
     public String login(String email, String password) {
